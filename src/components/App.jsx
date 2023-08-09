@@ -10,7 +10,7 @@ export const App = () => {
         color: '#010101'
       }}
     >
-      Hello WORLD and let's dance!!!
+      Hello WORLD and let's dance!!! Woo-hoo!!
     </div>
   );
 };
