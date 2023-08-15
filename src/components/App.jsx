@@ -15,7 +15,8 @@ export const App = () => {
 
 
   useEffect(() => {
-    window.localStorage.setItem('contacts', JSON.stringify(contacts)); }
+    window.localStorage.setItem('contacts', JSON.stringify(contacts));
+    setFiltered(contacts) }
     , [contacts]);
 
   const formSubmitHandler = (data) => {

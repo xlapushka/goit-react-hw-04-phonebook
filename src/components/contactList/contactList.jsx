@@ -25,9 +25,9 @@ export const ContactList = ({ deleteContact, contacts }) => {
           </p>
 
           <button
-            type="submit"
+            type="button"
             className={css.contactButtonDelete}
-            // onClick={console.log('click')}
+            onClick={console.log('click')}
           >
             Delete Contact
           </button>
