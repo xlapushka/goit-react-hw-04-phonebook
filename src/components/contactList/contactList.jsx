@@ -27,7 +27,7 @@ export const ContactList = ({ deleteContact, contacts }) => {
           <button
             type="button"
             className={css.contactButtonDelete}
-            onClick={console.log('click')}
+            onClick={() => deleteContact(contact.id)}
           >
             Delete Contact
           </button>

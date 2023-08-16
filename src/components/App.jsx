@@ -10,34 +10,35 @@ import css from './styles.module.css'
 
 export const App = () => {
   const [contacts, setContacts] = useState(JSON.parse(window.localStorage.getItem ('contacts')) ?? []);
-  // const [filter, setFilter] = useState('');
-  const [filtered, setFiltered] = useState(contacts); 
+  const [filter, setFilter] = useState('');
 
 
   useEffect(() => {
     window.localStorage.setItem('contacts', JSON.stringify(contacts));
-    setFiltered(contacts) }
-    , [contacts]);
+    }, [contacts]);
+
 
   const formSubmitHandler = (data) => {
     let exists = contacts.find(contact => contact.name.toLocaleLowerCase() === data.name.toLocaleLowerCase());
 
     if (!exists) {
-      console.log(data);
       setContacts(prev => [...prev, data]);
-      console.log('contacts', contacts)
     } else { 
       alert('This contact is already exists 🤓🤓');
-    }
+    };
   };
 
-  const searchByName = (filter) => {
-    setFiltered(contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase())))
+  const searchByName = (filterfromFilter) => {
+    contacts.filter(contact => contact.name.toLowerCase().includes(filterfromFilter.toLowerCase()));
+    setFilter(filterfromFilter);
       }
 
+  const getFilteredContacts = () => {
+    return contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()));
+      }    
+
   const deleteContact = (idToDelete) => {
-        console.log(idToDelete); 
-        // setFiltered(contacts.filter(contact => contact.id !== idToDelete));
+    return setContacts(contacts.filter(contact => contact.id !== idToDelete));
       }
    
 
@@ -45,18 +46,16 @@ export const App = () => {
       <>
          <div className={css.page}>
           <NewName onSubmit={formSubmitHandler}
-            // contacts ={ contacts }
-           />
+          />
 
           {contacts.length !== 0 && (
             <div className={css.filterUp}>
               <ContactList
                 deleteContact={deleteContact}
-                contacts={filtered}
+                contacts={getFilteredContacts()}
               />
               <Filter
                 searchByName={searchByName}
-                // filter={filter}
               />
             </div>
           )}

@@ -47,5 +47,5 @@ export const Filter = ({searchByName}) => {
 
 Filter.propTypes = {
   searchByName: PropTypes.func.isRequired,
-  // filter: PropTypes.string,
+  filter: PropTypes.string,
 };
